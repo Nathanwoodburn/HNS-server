@@ -1,5 +1,3 @@
-# Install nginx
-# sudo apt install nginx -y
 # Setup NGINX config
 printf "server {
   listen 80;
@@ -46,8 +44,10 @@ openssl req -x509 -newkey rsa:4096 -sha256 -days 365 -nodes \
     echo "subjectAltName=DNS:$1,DNS:*.$1";
     ) -subj "/CN=*.$1"
 
+# Print TLSA record and store in file in case of lost output
 echo "Add this TLSA Record to your DNS:"
 echo -n "3 1 1 " && openssl x509 -in cert.crt -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | xxd  -p -u -c 32
+echo -n "3 1 1 " && openssl x509 -in cert.crt -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | xxd  -p -u -c 32 > TLSA
 
 sudo mv cert.key /etc/ssl/$1.key
 sudo mv cert.crt /etc/ssl/$1.crt

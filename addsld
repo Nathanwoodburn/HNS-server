@@ -1,0 +1,36 @@
+# Setup NGINX config
+printf "server {
+  listen 80;
+  listen [::]:80;
+  root $PWD;
+  index index.html;
+  server_name $2.$1;
+
+    location / {
+        try_files \$uri \$uri/ @htmlext;
+    }
+
+    location ~ \.html$ {
+        try_files \$uri =404;
+    }
+
+    location @htmlext {
+        rewrite ^(.*)$ \$1.html last;
+    }
+    error_page 404 /404.html;
+    location = /404.html {
+            internal;
+    }
+    location = /.well-known/wallets/HNS {
+        add_header Cache-Control 'must-revalidate';
+        add_header Content-Type text/plain;
+    }
+    listen 443 ssl;
+    ssl_certificate /etc/ssl/$1.crt;
+    ssl_certificate_key /etc/ssl/$1.key;
+}
+" > /etc/nginx/sites-available/$2.$1
+sudo ln -s /etc/nginx/sites-available/$2.$1 /etc/nginx/sites-enabled/$2.$1
+
+# Restart to apply config file
+sudo systemctl restart nginx
