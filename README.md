@@ -21,3 +21,12 @@ Change directory into the directory containing your website files.
 `wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/addsld`  
 `sudo chmod +x addsld`  
 `sudo ./addsld <HNSTLD> <HNSSLD>` #For example nathan.woodburn would be `sudo ./addsld woodburn nathan`  
+
+TLD and SLD proxy to ICANN site. This installs nginx as well as setup HNS domains  
+
+`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/proxy`  
+`sudo chmod +x proxy`  
+`sudo ./proxy <HNSDOMAIN> <target url>` # Use your TLD. This adds a wildcard so *.[HNSDOMAIN] will point to these files  
+Example proxy *.3dprintingservice -> nathan3dprinting.au
+`sudo ./proxy 3dprintingservice https://nathan3dprinting.au`
+
