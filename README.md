@@ -30,3 +30,6 @@ TLD and SLD proxy to ICANN site. This installs nginx as well as setup HNS domain
 Example proxy *.3dprintingservice -> nathan3dprinting.au
 `sudo ./proxy 3dprintingservice https://nathan3dprinting.au`
 
+For a non wildcard use ./proxy-sld
+Eg only proxy nathan.3dprintingservice
+`sudo ./proxy-sld nathan.3dprintingservice https://nathan3dprinting.au`
