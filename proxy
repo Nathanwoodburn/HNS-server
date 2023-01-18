@@ -1,5 +1,5 @@
 # Install nginx
-Sudo apt update
+sudo apt update
 sudo apt install nginx -y
 # Setup NGINX config
 printf "server {
