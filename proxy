@@ -22,8 +22,7 @@ sudo ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled/$1
 
 #generate ssl certificate
 openssl req -x509 -newkey rsa:4096 -sha256 -days 365 -nodes \
-  -keyout cert.key -out cert.crt -extensions ext  -config \
-  <(echo "[req]";
+  -keyout cert.key -out cert.crt -extensions ext  -config <(echo "[req]";
     echo distinguished_name=req;
     echo "[ext]";
     echo "keyUsage=critical,digitalSignature,keyEncipherment";
