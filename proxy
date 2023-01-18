@@ -5,7 +5,7 @@ sudo apt install nginx -y
 printf "server {
   listen 80;
   listen [::]:80;
-  server_name $1;
+  server_name $1 *.$1;
   proxy_ssl_server_name on;
   location / {
     proxy_set_header X-Real-IP \$remote_addr;
