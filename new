@@ -55,4 +55,5 @@ sudo mv cert.key /etc/ssl/$1.key
 sudo mv cert.crt /etc/ssl/$1.crt
 
 # Restart to apply config file
+sudo chmod a+rx $PWD
 sudo systemctl restart nginx
