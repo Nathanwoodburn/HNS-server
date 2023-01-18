@@ -1,3 +1,4 @@
+#!/bin/bash
 # Setup NGINX config
 printf "server {
   listen 80;
