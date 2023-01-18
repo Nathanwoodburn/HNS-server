@@ -14,8 +14,7 @@ printf "server {
     listen 443 ssl;
     ssl_certificate /etc/ssl/$1.crt;
     ssl_certificate_key /etc/ssl/$1.key;
-}
-" > /etc/nginx/sites-available/$1
+}" > /etc/nginx/sites-available/$1
 sudo ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled/$1
 
 #generate ssl certificate
