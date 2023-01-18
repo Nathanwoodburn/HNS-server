@@ -33,4 +33,5 @@ printf "server {
 sudo ln -s /etc/nginx/sites-available/$2.$1 /etc/nginx/sites-enabled/$2.$1
 
 # Restart to apply config file
+sudo chmod a+rx $PWD
 sudo systemctl restart nginx
