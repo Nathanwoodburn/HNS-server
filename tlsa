@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "TLSA record:"
+echo -n "3 1 1 " && openssl x509 -in /etc/SSL/$1.crt -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | xxd  -p -u -c 32
