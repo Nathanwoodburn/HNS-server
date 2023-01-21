@@ -22,7 +22,12 @@ TLD and SLD proxy to ICANN site. This installs nginx as well as setup HNS domain
 `sudo ./proxy <HNSDOMAIN> <target url>` # Use your TLD. This adds a wildcard so *.[HNSDOMAIN] will point to these files  
 Example proxy *.3dprintingservice -> nathan3dprinting.au
 `sudo ./proxy 3dprintingservice https://nathan3dprinting.au`
-
+  
 For a non wildcard use ./proxy-sld
 Eg only proxy nathan.3dprintingservice
 `sudo ./proxy-sld nathan.3dprintingservice https://nathan3dprinting.au`
+  
+Forgot your TLSA record  
+`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/tlsa`  
+`sudo chmod +x tlsa`  
+`./tlsa <HNSTLD>`
