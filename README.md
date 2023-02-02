@@ -26,7 +26,9 @@ Example proxy *.3dprintingservice -> nathan3dprinting.au
 For a non wildcard use ./proxy-sld
 Eg only proxy nathan.3dprintingservice
 `sudo ./proxy-sld nathan.3dprintingservice https://nathan3dprinting.au`
-  
+
+Replace proxy with redirect to do a redirect instead of a mirror (proxy).
+
 Forgot your TLSA record?  
 `wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/tlsa`  
 `sudo chmod +x tlsa`  
