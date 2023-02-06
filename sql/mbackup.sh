@@ -48,3 +48,6 @@ echo "Current log: ${CURRENT_LOG}" >> backup_settings.txt
 echo "Current pos: ${CURRENT_POS}" >> backup_settings.txt
 
 echo "If you forget these credentials, you can find them in backup_settings.txt"
+
+# Exporting current database
+mysqldump -u root -p pdns > database.sql
