@@ -49,5 +49,7 @@ echo "Current pos: ${CURRENT_POS}" >> backup_settings.txt
 
 echo "If you forget these credentials, you can find them in backup_settings.txt"
 
+echo "Exporting current database"
+echo "You might need to enter the password for the database"
 # Exporting current database
-mysqldump -u root -p pdns > database.sql
+mysqldump -p pdns > database.sql
