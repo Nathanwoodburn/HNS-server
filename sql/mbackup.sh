@@ -57,4 +57,4 @@ echo "You might need to enter the password for the database"
 mysqldump -p pdns > pdns.sql
 mysqldump -p varo > varo.sql
 
-echo "Copy files to slave server"
+echo "Copy pdns.sql and varo.sql files to slave server"
