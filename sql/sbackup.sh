@@ -5,6 +5,9 @@ password=$2
 log=$3
 pos=$4
 
+oldbind="bind-address            = 127.0.0.1"
+newbind="bind-address            = 0.0.0.0"
+
 apt-get install mariadb-server mariadb-client -y
 
 # Replace old bind address with new bind address
@@ -33,8 +36,8 @@ mysql -e "CREATE DATABASE pdns;"
 mysql -e "CREATE DATABASE varo;"
 
 # Import all databases
-mysql -p pdns < "pdns"
-mysql -p varo < "varo"
+mysql -p pdns < "$PWD/pdns.sql"
+mysql -p varo < "$PWD/varo.sql"
 
 # start slave
 mysql -e "START SLAVE;"
