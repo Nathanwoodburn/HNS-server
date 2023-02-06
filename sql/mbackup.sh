@@ -53,5 +53,8 @@ echo "If you forget these credentials, you can find them in backup_settings.txt"
 
 echo "Exporting current database"
 echo "You might need to enter the password for the database"
-# Exporting current database
-mysqldump -p pdns > database.sql
+# Exporting all databases
+mysqldump -p pdns > pdns.sql
+mysqldump -p varo > varo.sql
+
+echo "Copying files to slave server"

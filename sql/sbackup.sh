@@ -4,7 +4,6 @@ ip=$1
 password=$2
 log=$3
 pos=$4
-backup=$5
 
 apt-get install mariadb-server mariadb-client -y
 
@@ -29,8 +28,13 @@ mysql -e "STOP SLAVE;"
 # Change master settings
 mysql -e "CHANGE MASTER TO MASTER_HOST='$ip', MASTER_USER='pdnsbackup', MASTER_PASSWORD='$password', MASTER_LOG_FILE='$log', MASTER_LOG_POS=$pos;"
 
+# Create database
+mysql -e "CREATE DATABASE pdns;"
+mysql -e "CREATE DATABASE varo;"
+
+# Import all databases
+mysql -p pdns < "pdns"
+mysql -p varo < "varo"
+
 # start slave
 mysql -e "START SLAVE;"
-
-# Import database
-mysql -p pdns < $backup
