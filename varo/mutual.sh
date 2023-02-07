@@ -44,7 +44,7 @@ sudo chmod a+r /var/www/html
 sudo apt-get install mariadb-server -y
 
 # Generate random password
-LOCALPASS=$(openssl rand -base64 12)
+LOCALPASS=$(date +%s | sha256sum | base64 | head -c 32)
 
 # Add local login
 sudo mysql -e "CREATE USER 'mutual'@'localhost' IDENTIFIED BY '$LOCALPASS';"
@@ -123,7 +123,7 @@ crontab cron
 rm cron
 
 # Generate random password
-APIPASS=$(openssl rand -base64 12)
+APIPASS=$(date +%s | sha256sum | base64 | head -c 32)
 
 # Create conf file
 printf "<?php
@@ -132,15 +132,15 @@ printf "<?php
         \$GLOBALS[\"hnsHostname\"] = \"varo\";
         \$GLOBALS[\"icannHostname\"] = \"varo.domains\";
 
-        \$config[\"localSqlHost\"] = \"localhost\";
-        \$config[\"localSqlUser\"] = \"mutual\";
-        \$config[\"localSqlPass\"] = \"$LOCALPASS\";
-        \$config[\"localSqlDatabase\"] = \"pdns\";
+        \$GLOBALS[\"localSqlHost\"] = \"localhost\";
+        \$GLOBALS[\"localSqlUser\"] = \"mutual\";
+        \$GLOBALS[\"localSqlPass\"] = \"$LOCALPASS\";
+        \$GLOBALS[\"localSqlDatabase\"] = \"pdns\";
 
-        \$config[\"remoteSqlHost\"] = \"localhost\";
-        \$config[\"remoteSqlUser\"] = \"mutual\";
-        \$config[\"remoteSqlPass\"] = \"$LOCALPASS\";
-        \$config[\"remoteSqlDatabase\"] = \"pdns\";
+        \$GLOBALS[\"remoteSqlHost\"] = \"localhost\";
+        \$GLOBALS[\"remoteSqlUser\"] = \"mutual\";
+        \$GLOBALS[\"remoteSqlPass\"] = \"$LOCALPASS\";
+        \$GLOBALS[\"remoteSqlDatabase\"] = \"pdns\";
 
         \$GLOBALS[\"pass\"] = \"$APIPASS\";
 
