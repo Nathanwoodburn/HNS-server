@@ -1,6 +1,6 @@
 # HNS-server
 [NGINX](#nginx-instructions)  
-[Varo Clone](varo/README.md)  
+[Varo Clone](varo)  
 [MariaDB Replication (after Varo cloning)](#mariadb-instructions)  
 
 
