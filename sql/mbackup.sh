@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Generate random password
-password=$(openssl rand -base64 32)
+password=$(date +%s | sha256sum | base64 | head -c 32)
 
 # Create backup user
 mysql -e "CREATE USER 'pdnsbackup'@'%' IDENTIFIED BY '$password';"
