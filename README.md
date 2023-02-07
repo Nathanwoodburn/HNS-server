@@ -43,33 +43,33 @@ Forgot your TLSA record?
 Setup the backend first and use the output to setup the frontend.
 
 ## Backend
-`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/mutual.sh`
-`sudo chmod +x mutual.sh`
-`sudo ./mutual.sh`
+`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/mutual.sh`  
+`sudo chmod +x mutual.sh`  
+`sudo ./mutual.sh`  
 
 ## Frontend
-The frontend needs to be sent this information:
-IP of the backend
-LOCALPASS (generated and saved in /var/www/html/mutual/etc/password.txt)
-APIPASS (generated and saved in /var/www/html/mutual/etc/password.txt)
-ICANN Domain (Must have A record pointing to the frontend before running script or it will fail)
-HNS Domain
+The frontend needs to be sent this information:  
+IP of the backend  
+LOCALPASS (generated and saved in /var/www/html/mutual/etc/password.txt)  
+APIPASS (generated and saved in /var/www/html/mutual/etc/password.txt)  
+ICANN Domain (Must have A record pointing to the frontend before running script or it will fail)  
+HNS Domain  
 
 
-`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/dash.sh`
-`sudo chmod +x dash.sh`
-`sudo ./dash.sh <ICANN DOMAIN> <HNS DOMAIN> <LOCALPASS> <APIPASS> <IP OF BACKEND>`
+`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/dash.sh`  
+`sudo chmod +x dash.sh`  
+`sudo ./dash.sh <ICANN DOMAIN> <HNS DOMAIN> <LOCALPASS> <APIPASS> <IP OF BACKEND>`  
 
-You need to edit the config file to add your websites name, SMTP settings (to send password resets) and stripe credentials (!This is needed to get the site working).
-`nano /var/www/html/dashboard/etc/config.php`
-Don't edit the passwords as they are generated and used by multiple processes.
+You need to edit the config file to add your websites name, SMTP settings (to send password resets) and stripe credentials (!This is needed to get the site working).  
+`nano /var/www/html/dashboard/etc/config.php`  
+Don't edit the passwords as they are generated and used by multiple processes.  
 
 ## Add Varo Admin
 
-Add an admin to your varo installation. This gives them access to the admin panel.
-`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/admin.sh`
-`sudo chmod +x admin.sh`
-`sudo ./admin.sh <user's email>`
+Add an admin to your varo installation. This gives them access to the admin panel.  
+`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/admin.sh`  
+`sudo chmod +x admin.sh`  
+`sudo ./admin.sh <user's email>`  
 
 # MariaDB-Instructions
 
