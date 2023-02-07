@@ -40,6 +40,9 @@ Forgot your TLSA record?
 `./tlsa <HNSTLD>`
 
 # Varo-Clone
+!! WARNING !!
+This is a work in progress and still has some bugs.
+
 Setup the backend first and use the output to setup the frontend.
 
 ## Backend
