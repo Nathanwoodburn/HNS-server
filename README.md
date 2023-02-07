@@ -1,7 +1,7 @@
 # HNS-server
 [NGINX](#nginx-instructions)  
-[Varo Clone](#varo-clone)
-[MariaDB](#mariadb-instructions)  
+[Varo Clone](#varo-clone)  
+[MariaDB Replication (after Varo cloning)](#mariadb-instructions)  
 
 
 # NGINX-Instructions
@@ -42,12 +42,12 @@ Forgot your TLSA record?
 # Varo-Clone
 Setup the backend first and use the output to setup the frontend.
 
-# Backend
+## Backend
 `wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/mutual.sh`
 `sudo chmod +x mutual.sh`
 `sudo ./mutual.sh`
 
-# Frontend
+## Frontend
 The frontend needs to be sent this information:
 IP of the backend
 LOCALPASS (generated and saved in /var/www/html/mutual/etc/password.txt)
@@ -63,6 +63,13 @@ HNS Domain
 You need to edit the config file to add your websites name, SMTP settings (to send password resets) and stripe credentials (!This is needed to get the site working).
 `nano /var/www/html/dashboard/etc/config.php`
 Don't edit the passwords as they are generated and used by multiple processes.
+
+## Add Varo Admin
+
+Add an admin to your varo installation. This gives them access to the admin panel.
+`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/admin.sh`
+`sudo chmod +x admin.sh`
+`sudo ./admin.sh <user's email>`
 
 # MariaDB-Instructions
 
