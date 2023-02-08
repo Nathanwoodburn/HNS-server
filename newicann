@@ -1,0 +1,41 @@
+#!/bin/bash
+# Install nginx
+sudo apt update
+sudo apt-get install nginx certbot python3-certbot-nginx -y
+# Setup NGINX config
+printf "server {
+  listen 80;
+  listen [::]:80;
+  root $PWD;
+  index index.html;
+  server_name $1 *.$1;
+
+    location / {
+        try_files \$uri \$uri/ @htmlext;
+    }
+
+    location ~ \.html$ {
+        try_files \$uri =404;
+    }
+
+    location @htmlext {
+        rewrite ^(.*)$ \$1.html last;
+    }
+    error_page 404 /404.html;
+    location = /404.html {
+            internal;
+    }
+    location = /.well-known/wallets/HNS {
+        add_header Cache-Control 'must-revalidate';
+        add_header Content-Type text/plain;
+    }
+}
+" > /etc/nginx/sites-available/$1
+sudo ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled/$1
+
+# LetsEncrypt SSL Certificate
+sudo certbot --nginx -d $1 -d *.$1
+
+# Restart to apply config file
+sudo chmod a+rx $PWD
+sudo systemctl restart nginx
