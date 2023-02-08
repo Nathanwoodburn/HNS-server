@@ -186,3 +186,5 @@ cd hsd
 npm install --omit=dev
 screen -dmS HSD ./bin/hsd --spv --api-key=$APIKEY
 echo "Started HSD use screen -r to view it"
+echo "TLSA record:"
+echo -n "3 1 1 " && openssl x509 -in /etc/ssl/$1.crt -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | xxd  -p -u -c 32
