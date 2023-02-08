@@ -30,7 +30,7 @@ Setup the backend first and use the output to setup the frontend.
 ## Backend
 `wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/mutual.sh`  
 `sudo chmod +x mutual.sh`  
-`sudo ./mutual.sh`  
+`sudo ./mutual.sh <HNS DOMAIN> <ICANN DOMAIN>`  
 
 ## Frontend
 The frontend needs to be sent this information:  

@@ -131,8 +131,8 @@ APIPASS=$(date +%s | sha256sum | base64 | head -c 32)
 printf "<?php
         \$path = \"/var/www/html/mutual/\";
 
-        \$GLOBALS[\"hnsHostname\"] = \"varo\";
-        \$GLOBALS[\"icannHostname\"] = \"varo.domains\";
+        \$GLOBALS[\"hnsHostname\"] = \"$1\";
+        \$GLOBALS[\"icannHostname\"] = \"$2\";
 
         \$GLOBALS[\"localSqlHost\"] = \"localhost\";
         \$GLOBALS[\"localSqlUser\"] = \"mutual\";
