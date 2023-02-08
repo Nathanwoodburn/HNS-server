@@ -7,7 +7,7 @@
 
 Outline of the setup process:
 1. Set up a VPN tunnel between the backend and frontend (or use a shared network)
-   1. You will need to setup a firewall to block all ports except 80, 443, 53, 22, 3306
+   1. You will need to setup a firewall to block all ports except 53, 22 for the backend and 80, 443 for the frontend
    2. I recommend tailscale VPN as it is super easy to setup and free
    3. Save the VPN IP address of Backend for use in step 3.1
 2. Set up Backend
