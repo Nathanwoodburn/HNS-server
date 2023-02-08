@@ -1,5 +1,5 @@
 # Varo-Clone
-[Backed](#backend)  
+[Backend](#backend)  
 [Frontend](#frontend)  
 [Add Varo Admin](#add-varo-admin)  
 [Add a second nameserver](#replication)

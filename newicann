@@ -36,6 +36,13 @@ sudo ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled/$1
 # LetsEncrypt SSL Certificate
 sudo certbot --nginx -d $1 -d *.$1
 
+# Add cert renewal to cron
+crontab -l > cron
+printf "0 12 * * * /usr/bin/certbot renew --quiet
+" > cron
+crontab cron
+rm cron
+
 # Restart to apply config file
 sudo chmod a+rx $PWD
 sudo systemctl restart nginx
