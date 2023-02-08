@@ -4,8 +4,6 @@
 [Add Varo Admin](#add-varo-admin)  
 [Add a second nameserver](#replication)
 
-!! WARNING !!
-This is a work in progress and still has some bugs.
 
 Outline of the setup process:
 1. Set up a VPN tunnel between the backend and frontend (or use a shared network)

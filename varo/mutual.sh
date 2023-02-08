@@ -5,6 +5,8 @@ sudo apt-get update -y
 sudo apt-get install nginx -y
 sudo apt-get install php8.1-fpm php-mysql -y
 
+#php-curl
+
 # Pull varodomains mutual
 cd /var/www/html
 git clone https://github.com/varodomains/mutual.git
@@ -161,3 +163,6 @@ printf "User_Alias WEBAPI = www-data
 Cmnd_Alias PDNSUTIL = /usr/bin/pdnsutil
 WEBAPI ALL=NOPASSWD: PDNSUTIL
 " >> /etc/sudoers
+
+# Run tlds.php
+php /var/www/html/mutual/etc/tlds.php
