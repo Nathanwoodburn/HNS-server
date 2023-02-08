@@ -51,7 +51,9 @@ Don't edit the passwords as they are generated and used by multiple processes.
 
 ## Add Varo Admin
 
-Add an admin to your varo installation. This gives them access to the admin panel.  
+Add an admin to your varo installation.  
+This gives them access to the admin panel.  
+Run this script on the backend server.  
 `wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/admin.sh`  
 `sudo chmod +x admin.sh`  
 `sudo ./admin.sh <user's email>`  
