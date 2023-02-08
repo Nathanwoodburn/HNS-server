@@ -1,0 +1,25 @@
+#!/bin/bash
+# Install nginx
+sudo apt update
+sudo apt-get install nginx certbot python3-certbot-nginx -y
+# Setup NGINX config
+printf "server {
+  listen 80;
+  listen [::]:80;
+  server_name $1;
+  return 301 $2;
+}" > /etc/nginx/sites-available/$1
+sudo ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled/$1
+
+# LetsEncrypt SSL Certificate
+sudo certbot --nginx -d $1
+
+# Add cert renewal to cron
+crontab -l > cron
+printf "0 12 * * * /usr/bin/certbot renew --quiet
+" > cron
+crontab cron
+rm cron
+
+# Restart to apply config file
+sudo systemctl restart nginx
