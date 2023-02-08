@@ -150,7 +150,7 @@ printf "<?php
 	\$GLOBALS[\"handshakeNS1\"] = \"ns1.\".\$GLOBALS[\"hnsHostname\"].\".\";
 	\$GLOBALS[\"handshakeNS2\"] = \"ns2.\".\$GLOBALS[\"hnsHostname\"].\".\";
 
-	\$GLOBALS[\"walletName\"] = \"default\";
+	\$GLOBALS[\"walletName\"] = \"primary\";
 	\$GLOBALS[\"accountName\"] = \"default\";
 
 	\$GLOBALS[\"invoiceExpiration\"] = 7200;
