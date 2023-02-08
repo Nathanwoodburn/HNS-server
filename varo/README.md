@@ -2,7 +2,7 @@
 [Backend](#backend)  
 [Frontend](#frontend)  
 [Add Varo Admin](#add-varo-admin)  
-[Add a second nameserver](#replication)
+[Add a second nameserver](#replication)  
 [Updating Varo](#updating)
 
 
@@ -94,14 +94,14 @@ You also need the two database exports (varo.sql and pdns.sql) in the directory 
 
 # Updating
 
-To update the frontend run the following commands.
+To update the frontend run the following commands.  
 
-`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/update-dash.sh`
-`sudo chmod +x update-dash.sh`
-`sudo ./update-dash.sh`
+`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/update-dash.sh`  
+`sudo chmod +x update-dash.sh`  
+`sudo ./update-dash.sh`  
 
-To update the backend run the following commands.
+To update the backend run the following commands.  
 
-`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/update-mutual.sh`
-`sudo chmod +x update-mutual.sh`
-`sudo ./update-mutual.sh`
+`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/update-mutual.sh`  
+`sudo chmod +x update-mutual.sh`  
+`sudo ./update-mutual.sh`  
