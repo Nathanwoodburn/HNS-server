@@ -91,6 +91,12 @@ You also need the two database exports (varo.sql and pdns.sql) in the directory 
 `sudo chmod +x sbackup.sh`  
 `sudo ./sbackup.sh <MASTER IP> <PASSWORD> <LOG> <POS>`  
 
+You then need to install the PDNS (Nameserver software) on the slave server.  
+`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/backupns.sh`  
+`sudo chmod +x backupns.sh`  
+`sudo ./backupns.sh`  
+
+
 
 # Updating
 

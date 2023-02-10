@@ -107,8 +107,8 @@ gmysql-dnssec=yes" > /etc/powerdns/pdns.d/pdns.local.gmysql.conf
 
 # Make sure perms is correct
 chown pdns:pdns /etc/powerdns/pdns.d/pdns.local.gmysql.conf
-chmod 777 -R /etc/powerdns
-#chown pdns:pdns /etc/powerdns/pdns.d/pdns.local.gmysql.conf
+chmod 755 -R /etc/powerdns
+
 
 # Restart pdns
 systemctl restart pdns
