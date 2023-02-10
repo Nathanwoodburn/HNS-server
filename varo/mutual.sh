@@ -40,7 +40,7 @@ printf "server {
 sudo systemctl restart nginx
 
 # Add read permission www dir
-sudo chmod a+r /var/www/html
+sudo chmod 755 -R /var/www/html
 
 # Install mariadb
 sudo apt-get install mariadb-server -y

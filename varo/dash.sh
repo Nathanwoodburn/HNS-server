@@ -53,7 +53,7 @@ mv cert.crt /etc/ssl/$HANDSHAKE.crt
 mv cert.key /etc/ssl/$HANDSHAKE.key
 
 # Give read permission to www dir
-sudo chmod 777 -R /var/www/html
+sudo chmod 755 -R /var/www/html
 
 echo "Adding apache config"
 
