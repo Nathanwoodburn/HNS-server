@@ -2,7 +2,7 @@
 
 # Setup Nginx with php
 sudo apt-get update -y
-sudo apt-get install nginx -y
+sudo apt-get install nginx git -y
 sudo apt-get install php8.1-fpm php-mysql -y
 
 #php-curl

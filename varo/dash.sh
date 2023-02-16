@@ -5,7 +5,7 @@ echo "Installing a ton of stuff"
 sudo apt-get update -y
 
 # Install a ton of things
-sudo apt-get install apache2 php php-mysql certbot python3-certbot-apache php-curl php-intl composer npm -y
+sudo apt-get install apache2 php php-mysql certbot python3-certbot-apache php-curl php-intl composer npm git -y
 sudo a2enmod rewrite ssl headers
 
 # Set variable
