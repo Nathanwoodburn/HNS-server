@@ -27,7 +27,7 @@ Outline of the setup process:
 5. Add records
    1. Create an account on the frontend and add the HNS domain to it
    2. Add these records to the blockchain records (replacing old records if they exist)
-      1. Add a GLUE4 record for the HNS domain (eg. `ns1.yourtld`) to point it to the Backend Server and one the the second nameserver if you have one (eg. `ns2.yourtld`)
+      1. Add a GLUE4 record for the HNS domain (eg. `ns1.yourtld`) to point it to the Backend Server and one for the second nameserver if you have one (eg. `ns2.yourtld`)
       2. Add the DS record as provided in the frontend
    3. Add an A record to the HNS domain on the frontend dashboard with the IP of the frontend server
    4. Add the TLSA record as provided in the frontend script (or use the [TLSA Script](https://github.com/nathanwoodburn/HNS-server#forgot-your-tlsa-record) to retrieve it)
