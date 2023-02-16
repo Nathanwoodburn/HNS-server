@@ -47,8 +47,6 @@ openssl req -x509 -newkey rsa:4096 -sha256 -days 365 -nodes \
     echo "subjectAltName=DNS:$HANDSHAKE,DNS:*.$HANDSHAKE";
     ) -subj "/CN=*.$HANDSHAKE"
 
-echo -n "3 1 1 " && openssl x509 -in cert.crt -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | xxd  -p -u -c 32 > TLSA.txt
-
 mv cert.crt /etc/ssl/$HANDSHAKE.crt
 mv cert.key /etc/ssl/$HANDSHAKE.key
 
@@ -78,15 +76,16 @@ echo "</VirtualHost>" >> /etc/apache2/sites-available/$HANDSHAKE.conf
 # Remove \ (for some reason it adds \ instead of escaping ! but without ! it causes errors)
 sed -i 's/\\//g' /etc/apache2/sites-available/$HANDSHAKE.conf
 
+# Enable site and restart apache
 echo "Applying apache config"
-
 sudo a2ensite $HANDSHAKE.conf
 systemctl restart apache2
 
-echo "Adding LetsEncrypt cert"
 # Add LetsEncrypt cert
+echo "Adding LetsEncrypt cert"
 sudo certbot --apache -d $ICANN
 
+# Add Handshake SSL config
 echo "Adding Handshake SSL config"
 
 echo "<VirtualHost *:443>" >> /etc/apache2/sites-available/$HANDSHAKE.conf
@@ -96,9 +95,9 @@ echo "    SSLEngine on" >> /etc/apache2/sites-available/$HANDSHAKE.conf
 echo "    SSLCertificateFile /etc/ssl/$HANDSHAKE.crt" >> /etc/apache2/sites-available/$HANDSHAKE.conf
 echo "    SSLCertificateKeyFile /etc/ssl/$HANDSHAKE.key" >> /etc/apache2/sites-available/$HANDSHAKE.conf
 echo "</VirtualHost>" >> /etc/apache2/sites-available/$HANDSHAKE.conf
-
 systemctl restart apache2
 
+# Adding varo config and setting variables
 echo "Autofilling Varo config"
 
 printf "<?php
@@ -160,18 +159,17 @@ printf "<?php
 	\$GLOBALS[\"themes\"] = [\"black\", \"dark\", \"light\", \"the_shake\"];
 ?>" > /var/www/html/dashboard/etc/config.php
 
-echo "Creating cronjob"
 
 # Add cronjob
+echo "Creating cronjob"
 crontab -l > cron
 printf "*/1 * * * * /usr/bin/php /var/www/html/dashboard/etc/cron.php >/dev/null 2>&1
 " > cron
 crontab cron
 rm cron
 
-echo "Editing apache conf"
-
 # Fix apache conf
+echo "Editing apache conf"
 rm /etc/apache2/apache2.conf
 wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/varo/apache2.conf -O /etc/apache2/apache2.conf
 systemctl restart apache2
@@ -186,5 +184,7 @@ cd hsd
 npm install --omit=dev
 screen -dmS HSD ./bin/hsd --spv --api-key=$APIKEY
 echo "Started HSD use screen -r to view it"
+
+# Echo TLSA record
 echo "TLSA record:"
 echo -n "3 1 1 " && openssl x509 -in /etc/ssl/$HANDSHAKE.crt -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | xxd  -p -u -c 32
