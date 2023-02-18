@@ -170,3 +170,4 @@ php /var/www/html/mutual/etc/tlds.php
 # Enable ALIAS records
 echo "resolver=1.1.1.1" >> /etc/powerdns/pdns.conf
 echo "expand-alias=yes" >> /etc/powerdns/pdns.conf
+systemctl restart pdns
