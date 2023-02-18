@@ -130,7 +130,7 @@ printf "<?php
 	\$GLOBALS[\"pdnsApiHost\"] = \"$IP\";
 	\$GLOBALS[\"pdnsApiPass\"] = \"$APIPASS\";
 
-	\$GLOBALS[\"recordTypes\"] = [\"A\", \"AAAA\", \"ALIAS\", \"CNAME\", \"DS\", \"MX\", \"NS\", \"PTR\", \"SPF\", \"TLSA\", \"TXT\", \"REDIRECT\"];
+	\$GLOBALS[\"recordTypes\"] = [\"A\", \"AAAA\", \"ALIAS\", \"CNAME\", \"DS\", \"MX\", \"NS\", \"PTR\", \"SPF\", \"TLSA\", \"TXT\"];
 
 	\$GLOBALS[\"currency\"] = \"usd\";
 	\$GLOBALS[\"stripeSecretKey\"] = \"your-stripe-secret-here\";
