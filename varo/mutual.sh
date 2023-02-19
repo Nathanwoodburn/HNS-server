@@ -171,3 +171,21 @@ php /var/www/html/mutual/etc/tlds.php
 echo "resolver=1.1.1.1" >> /etc/powerdns/pdns.conf
 echo "expand-alias=yes" >> /etc/powerdns/pdns.conf
 systemctl restart pdns
+
+# Get public IP
+PUBIP=$(curl -s https://api.ipify.org)
+
+# Echo adding NS instructions
+echo "Add the following NS records to either the Blockchain records in Namebase or Bob/HSD:"
+echo "For Namebase:"
+echo "TYPE: NS"
+echo "NAME: ns1"
+echo "VALUE: $PUBIP"
+
+echo "For Bob/HSD:"
+echo "TYPE: GLUE4"
+echo "VALUE: ns1.$1. $PUBIP"
+
+echo "TYPE: NS"
+echo "VALUE: ns1.$1."
+echo "Note this isn't needed but might be used by some resolvers."
