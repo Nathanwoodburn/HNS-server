@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Do some checks
+
+# Check if root
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
+# Check that 2 arguments are passed
+if [ "$#" -ne 2 ]; then
+	echo "Illegal number of parameters"
+	exit
+fi
+
 # Setup Nginx with php
 sudo apt-get update -y
 sudo apt-get install nginx git -y

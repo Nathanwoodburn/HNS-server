@@ -1,5 +1,42 @@
 #!/bin/bash
 
+# Do some checks
+
+# Check if root
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
+# Check that 5 arguments are passed
+if [ "$#" -ne 5 ]; then
+	echo "Illegal number of parameters"
+	exit
+fi
+
+# Set variable
+ICANN=$1
+HANDSHAKE=$2
+LOCALPASS=$3
+APIPASS=$4
+IP=$5
+
+echo "Checking for ICANN DNS"
+# Check that ICANN DNS is set
+# Get public IP
+PUBLICIP=$(curl -s https://api.ipify.org)
+
+# Dig Cloudflare for ICANN DNS
+ICANNIP=$(dig +short $ICANN @1.1.1.1 | head -n 1)
+
+# Check if IP matches
+if [ "$PUBLICIP" != "$ICANNIP" ]; then
+	echo "ICANN DNS is not set to $PUBLICIP"
+	exit
+fi
+
+
+echo "Checks passed."
 echo "Installing a ton of stuff"
 # Update repo
 sudo apt-get update -y
@@ -8,12 +45,6 @@ sudo apt-get update -y
 sudo apt-get install apache2 php php-mysql certbot python3-certbot-apache php-curl php-intl composer npm git -y
 sudo a2enmod rewrite ssl headers
 
-# Set variable
-ICANN=$1
-HANDSHAKE=$2
-LOCALPASS=$3
-APIPASS=$4
-IP=$5
 
 # Generate textonly password
 HSDAPI=$(date +%s | sha256sum | base64 | head -c 32)
