@@ -1,6 +1,4 @@
 #!/bin/bash
-
-sudo apt install nginx -y
 # Setup NGINX config
 printf "server {
   listen 80;
