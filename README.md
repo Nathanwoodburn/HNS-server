@@ -1,8 +1,9 @@
 # HNS-server
 + [NGINX HNS](#nginx-hns)  
 + [NGINX ICANN](#nginx-icann)  
++ [Redirect/Mirror Automation](#automation)
 + [Varo Clone](varo)  
-+ [MariaDB Replication (after Varo cloning)](#mariadb-instructions)  
++ [MariaDB Replication (after Varo cloning)](sql)  
 
 
 # NGINX-HNS
@@ -16,7 +17,7 @@ Change directory into the directory containing your website files.
 `wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/new`  
 `sudo chmod +x new`  
 `sudo ./new <HNSDOMAIN>`  
-! Use your TLD. This adds a wildcard so *.[HNSDOMAIN] will point to these files  
+
 
 ## Standard HNS domain with HTML content (SLD or TLD only)
 Same as above without wildcard.  
@@ -33,7 +34,7 @@ This will create a mirror of the ICANN site showing the Handshake domain in the 
 `wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/proxy`  
 `sudo chmod +x proxy`  
 `sudo ./proxy <HNSDOMAIN> <target url>`  
-! Use your TLD. This adds a wildcard so *.[HNSDOMAIN] will point to these files  
+
 Example proxy *.3dprintingservice -> nathan3dprinting.au  
 `sudo ./proxy 3dprintingservice https://nathan3dprinting.au`  
 
@@ -50,7 +51,7 @@ Replace proxy with redirect to do a redirect instead of a mirror (proxy).
 `wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/redirect`   
 `sudo chmod +x redirect`  
 `sudo ./redirect <HNSDOMAIN> <target url>`  
-! Use your TLD. This adds a wildcard so *.[HNSDOMAIN] will point to these files  
+
 
 
 ## Redirect HNS domain to ICANN site (SLD or TLD only)
@@ -87,28 +88,21 @@ Eg redirect 3dprinting.woodburn.au -> nathan3dprinting.au
 `sudo chmod +x redirecticann`  
 `sudo ./redirecticann 3dprinting.woodburn.au https://nathan3dprinting.au`  
 
+# Automation
 
-# MariaDB-Instructions
+## csv File Format
+The csv file should be format  
+`<HNSDOMAIN>,<TARGETURL>`  
+Eg  
+`3dprintingservice,https://nathan3dprinting.au`  
+Please note you need a header row as this script will not use the first row of the csv file.
 
-## Master  
-If this is the first slave to add to the master, run the following commands.  
-`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/sql/mbackup.sh`  
-`sudo chmod +x mbackup.sh`  
-`sudo ./mbackup.sh`  
+## Proxy HNS domain to ICANN site
+`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/proxy-csv.sh`  
+`sudo chmod +x proxy-csv.sh`  
+`sudo ./proxy-csv.sh <csv file>`  
 
-If you have already setup a slave, then run the following commands.  
-`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/sql/addbackup.sh`  
-`sudo chmod +x addbackup.sh`  
-`sudo ./addbackup.sh`  
-
-## Slave
-First you need these config from the master setup  
-+ Master IP (Internal VPN or shared network is most secure)
-+ Generated Password
-+ Log
-+ Pos
-
-You also need the two database exports (varo.sql and pdns.sql) in the directory you are when running the script.  
-`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/sql/sbackup.sh`  
-`sudo chmod +x sbackup.sh`  
-`sudo ./sbackup.sh <MASTER IP> <PASSWORD> <LOG> <POS>`  
+## Redirect HNS domain to ICANN site
+`wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/redirect-csv.sh`  
+`sudo chmod +x redirect-csv.sh`  
+`sudo ./redirect-csv.sh <csv file>`  
