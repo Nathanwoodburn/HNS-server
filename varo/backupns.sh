@@ -33,5 +33,5 @@ chmod 755 -R /etc/powerdns
 systemctl restart pdns
 
 # Save password to file
-echo "LOCALPASS: $LOCALPASS" > /var/www/html/mutual/etc/password.txt
-echo "Password saved to /var/www/html/mutual/etc/password.txt"
+echo "LOCALPASS: $LOCALPASS" > $PWD/password.txt
+echo "Password saved to $PWD/password.txt"
