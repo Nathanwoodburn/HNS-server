@@ -1,4 +1,26 @@
 #!/bin/bash
+
+domain=$1
+# Check if args passed
+if [ -z "$1" ]
+then
+#  Ask for domain name
+  echo "Domain name:"
+    read domain
+
+fi
+
+echo "Location to files (default current directory):"
+echo "Please note that the location must be readable by the nginx user."
+echo "For best results use a directory in /var/www"
+read location
+
+# if location is empty, use current directory
+if [ -z "$location" ]
+then
+  location=$PWD
+fi
+
 # Install nginx
 sudo apt update
 sudo apt-get install nginx certbot python3-certbot-nginx -y
@@ -6,9 +28,9 @@ sudo apt-get install nginx certbot python3-certbot-nginx -y
 printf "server {
   listen 80;
   listen [::]:80;
-  root $PWD;
+  root $location;
   index index.html;
-  server_name $1;
+  server_name $domain;
 
     location / {
         try_files \$uri \$uri/ @htmlext;
@@ -30,11 +52,11 @@ printf "server {
         add_header Content-Type text/plain;
     }
 }
-" > /etc/nginx/sites-available/$1
-sudo ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled/$1
+" > /etc/nginx/sites-available/$domain
+sudo ln -s /etc/nginx/sites-available/$domain /etc/nginx/sites-enabled/$domain
 
 # LetsEncrypt SSL Certificate
-sudo certbot --nginx -d $1
+sudo certbot --nginx -d $domain
 
 # Add cert renewal to cron
 crontab -l > cron
@@ -44,5 +66,5 @@ crontab cron
 rm cron
 
 # Restart to apply config file
-sudo chmod a+rx $PWD
+sudo chmod a+rx $location
 sudo systemctl restart nginx

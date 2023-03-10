@@ -21,7 +21,6 @@ then
   location=$PWD
 fi
 
-
 # Install nginx
 sudo apt update
 sudo apt install nginx -y
