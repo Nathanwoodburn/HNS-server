@@ -5,8 +5,17 @@
 [Add a second nameserver](#replication)  
 [Updating Varo](#updating)
 
+## Before starting
+Prerequisites:  
++ An ICANN domain name (eg. yourdomain.com) - Replace <ICANN DOMAIN> with this
++ A HNS domain name (eg. yourtld) - Replace <HNS DOMAIN> with this
++ Tailscale Account (Free plan is fine) - https://tailscale.com/
++ Stripe Account - https://stripe.com/
++ At least 2 servers (1 for frontend and 1-2 for backend) - Get cheap servers from [Linode](https://l.woodburn.au/linode)
 
-Outline of the setup process:
+
+
+## Outline of the setup process:
 1. Set up a VPN tunnel between the backend and frontend (or use a shared network)
    1. You will need to setup a firewall to block all ports except 53, 22 for the backend and 80, 443 for the frontend
    2. I recommend tailscale VPN as it is super easy to setup and free
@@ -53,7 +62,7 @@ HNS Domain
 `sudo chmod +x dash.sh`  
 `sudo ./dash.sh <ICANN DOMAIN> <HNS DOMAIN> <LOCALPASS> <APIPASS> <IP OF BACKEND>`  
 
-You need to edit the config file to add your websites name, SMTP settings (to send password resets) and stripe credentials (!This is needed to get the site working).  
+You need to edit the config file to add your websites name, SMTP settings (to send password resets) and [stripe api key](https://dashboard.stripe.com/apikeys) (!This is needed to get the site working).  
 `nano /var/www/html/dashboard/etc/config.php`  
 Don't edit the passwords as they are generated and used by multiple processes.  
 
