@@ -95,6 +95,22 @@ Eg redirect 3dprinting.woodburn.au -> nathan3dprinting.au
 `sudo chmod +x redirecticann`  
 `sudo ./redirecticann 3dprinting.woodburn.au https://nathan3dprinting.au`  
 
+
+# Wordpress
+## Wordpress with HNS domain
+```sh
+wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/wp.sh
+sudo chmod +x wp.sh
+sudo ./wp.sh <HNSDOMAIN>
+```
+
+If you want to have multiple wordpress sites on the same server you can use the following command to create a new wordpress site. The port offset only affects the port used for the wordpress site. The port used for the HNS domain will always be 80 & 443.
+```sh
+sudo ./wp.sh <HNSDOMAIN> <PORT OFFSET>
+```
+
+
+
 # Automation
 
 ## csv File Format
