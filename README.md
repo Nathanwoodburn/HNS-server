@@ -109,6 +109,13 @@ If you want to have multiple wordpress sites on the same server you can use the 
 sudo ./wp.sh <HNSDOMAIN> <PORT OFFSET>
 ```
 
+# Static html site from Git repo
+```sh
+wget https://raw.githubusercontent.com/Nathanwoodburn/HNS-server/main/git.sh
+sudo chmod +x git.sh
+sudo ./git.sh <HNSDOMAIN> <GIT REPO>
+```
+
 
 
 # Automation

@@ -28,14 +28,17 @@ fi
 if ! [ -x "$(command -v nginx)" ]; then
     sudo apt update
     sudo apt install nginx -y
-    fi
 fi
+
+# Clone git repo
+git clone $git_repo /var/www/$domain
+
 
 # Setup NGINX config
 printf "server {
   listen 80;
   listen [::]:80;
-  root $location;
+  root /var/www/$domain;
   index index.html;
   server_name $domain *.$domain;
 
