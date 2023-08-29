@@ -71,4 +71,5 @@ In the admin panel (accessible at `https://mail.example.com/admin`)
 
 Go to the TLS (SSL) Certificates tab and click the "Provision" button (usually requires 2 presses to provision all the certs)
 
-
+# All done
+Add users and enjoy your new email server.

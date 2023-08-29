@@ -27,7 +27,7 @@ def validate_email(email, mode=None):
 	# alias table, i.e. omitting the local part ("@domain.tld") is OK.
 
     # Check the syntax of the address.
-    if re.search(r'[a-z0-9]+@[a-z]+(.[a-z]+)*',email):
+    if re.search(r'[a-z0-9]*@[a-z]+(.[a-z]+)*',email):
         if mode == 'user':
         # There are a lot of characters permitted in email addresses, but
         # Dovecot's sqlite auth driver seems to get confused if there are any
