@@ -72,6 +72,9 @@ In the admin panel (accessible at `https://mail.example.com/admin`)
 Go to the TLS (SSL) Certificates tab and click the "Provision" button (usually requires 2 presses to provision all the certs)
 
 ## Adding a domain
-Simply add a user with the domain eg. `nathan@woodburn`  
-After adding the user, go to external DNS and get the DNS records to add to your DNS for the HNS domain.  
+Simply add a user/alias with the domain eg. `nathan@woodburn`  
+After adding the user/alias, go to external DNS and get the DNS records to add to your DNS for the HNS domain.  
 You will need the MX and preferably the SPF records.
+
+I would recommend having your main user a ICANN domain to allow sending emails to other email providers.  
+Then use aliases for the HNS domains as direct HNS accounts are a bit buggy with the webmail.
