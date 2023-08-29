@@ -26,31 +26,27 @@ def validate_email(email, mode=None):
 	# When mode=="alias", we're allowing anything that can be in a Postfix
 	# alias table, i.e. omitting the local part ("@domain.tld") is OK.
 
-	# Check the syntax of the address.
-	try:
-		validate_email_(email,
-			allow_smtputf8=False,
-			check_deliverability=False,
-			allow_empty_local=(mode=="alias")
-			)
-	except EmailNotValidError:
-		return False
+    # Check the syntax of the address.
+    if re.search(r'[a-z0-9]+@[a-z]+(.[a-z]+)*',email):
+        if mode == 'user':
+        # There are a lot of characters permitted in email addresses, but
+        # Dovecot's sqlite auth driver seems to get confused if there are any
+        # unusual characters in the address. Bah. Also note that since
+        # the mailbox path name is based on the email address, the address
+        # shouldn't be absurdly long and must not have a forward slash.
+        # Our database is case sensitive (oops), which affects mail delivery
+        # (Postfix always queries in lowercase?), so also only permit lowercase
+        # letters.
+            if len(email) > 255: return False
+            if re.search(r'[^\@\.a-z0-9_\-]+', email):
+                return False
 
-	if mode == 'user':
-		# There are a lot of characters permitted in email addresses, but
-		# Dovecot's sqlite auth driver seems to get confused if there are any
-		# unusual characters in the address. Bah. Also note that since
-		# the mailbox path name is based on the email address, the address
-		# shouldn't be absurdly long and must not have a forward slash.
-		# Our database is case sensitive (oops), which affects mail delivery
-		# (Postfix always queries in lowercase?), so also only permit lowercase
-		# letters.
-		if len(email) > 255: return False
-		if re.search(r'[^\@\.a-z0-9_\-]+', email):
-			return False
+        # Everything looks good.
+        return True
+    else:
+        return False
 
-	# Everything looks good.
-	return True
+	
 
 def sanitize_idn_email_address(email):
 	# The user may enter Unicode in an email address. Convert the domain part
