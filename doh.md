@@ -23,6 +23,7 @@ services:
   doh-server:
     image: satishweb/doh-server
     hostname: doh-server
+    restart: always
     networks:
       - nginx
     ports:
