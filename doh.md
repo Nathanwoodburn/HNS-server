@@ -45,3 +45,11 @@ For example here is the config I use in NGINX Proxy Manager:
 ![NGINX Proxy Manager Config](image.png)  
 
 Make sure you have a valid SSL certificate for the domain you are using.
+
+
+## Test
+You can test that it is working by running this command replacing `doh.hnshosting.au` with your domain.
+
+```sh
+curl -H 'accept: application/dns-json' 'https://doh.hnshosting.au/dns-query?name=nathan.woodburn&type=A' | jq .
+```
