@@ -42,7 +42,7 @@ services:
 
 Setup NGINX to proxy to the docker container.  
 For example here is the config I use in NGINX Proxy Manager:  
-![NGINX Proxy Manager Config](image.png)  
+![NGINX Proxy Manager Config](doh_nginx.png)  
 
 Make sure you have a valid SSL certificate for the domain you are using.
 
