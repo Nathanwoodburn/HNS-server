@@ -6,6 +6,7 @@
 + [MariaDB Replication (after Varo cloning)](sql)  
 + [Email Server](email)
 + [DoH Server](doh.md)
++ [HSD Scripts](hsd)
 
 
 # NGINX-HNS
