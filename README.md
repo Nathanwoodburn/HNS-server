@@ -7,6 +7,7 @@
 + [Email Server](email)
 + [DoH Server](doh.md)
 + [HSD Scripts](hsd)
++ [Varo Auth](varo-auth)
 
 
 # NGINX-HNS
