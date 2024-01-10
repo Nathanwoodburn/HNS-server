@@ -4,3 +4,5 @@ wallet.sh
 varo-auth/__pycache__/
 
 pub.crt
+
+hsd/domains.csv
