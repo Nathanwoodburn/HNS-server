@@ -39,7 +39,6 @@ if __name__ == "__main__":
 
     print("Checking offers: " + str(pending['totalCount']))
 
-    toAccept = []
     total = pending['totalCount']
     seen = 0
     while seen < total:
@@ -59,38 +58,15 @@ if __name__ == "__main__":
                             bestValidBidID = bid['bidId']
 
                 if bestValidBid >= threshold:
-                    print("Found offer for " + offer['domain'] + " for " + str(bestValidBid))
-                    toAccept.append({
-                        "domain": offer['domain'],
-                        "amount": bestValidBid,
-                        "bidId": bestValidBidID
-                    })
-                
+                    acceptResponse = requests.post('https://www.namebase.io/api/v0/offers/bid',json={'bidId':bestValidBidID},headers=headers)
+                    if acceptResponse.status_code == 200:
+                        print(f"Accepted {offer['domain']} for {bestValidBid}")
+                        
 
         seen += len(pending['domains'])
         if seen < total:
             pending = get_pending(token,seen)
 
-    print("\n\nDone checking for offers")
-    print(str(len(toAccept)) + " domains to accept\n\n")
-    for domain in toAccept:
-        print(domain['domain'])
-
-
-    print("\n")
-
-    answer = input("Accept all these offers? [Y/N]  ")
-    if answer.lower() != "y":
-        quit(0)
-
-    print("Accepting offers")
-
-    for offer in toAccept:
-        print(offer)
-
-        acceptResponse = requests.post('https://www.namebase.io/api/v0/offers/bid',json={'bidId':offer['bidId']},headers=headers)
-        if (acceptResponse.status_code == 200):
-            print(f"Accepted offer for {offer['domain']}")
         
 
 
