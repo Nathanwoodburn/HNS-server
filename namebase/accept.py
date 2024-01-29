@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 import json
 
 def get_pending(token,page=0):
-    url = f"https://www.namebase.io/api/v0/offers/received?offset={page}&sortKey=highestCurrentOffer&sortDirection=desc&showHidden=true"
+    url = f"https://www.namebase.io/api/v0/offers/received?offset={page}&sortKey=createdAt&sortDirection=asc&showHidden=true"
     headers = {
         "authority": "www.namebase.io",
         "accept": "application/json",
