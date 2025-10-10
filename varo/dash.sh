@@ -195,7 +195,7 @@ printf "<?php
 echo "Creating cronjob"
 crontab -l > cron
 printf "*/1 * * * * /usr/bin/php /var/www/html/dashboard/etc/cron.php >/dev/null 2>&1
-" > cron
+" >> cron
 crontab cron
 rm cron
 
